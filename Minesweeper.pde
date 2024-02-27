@@ -16,7 +16,6 @@ void setup ()
       buttons[r][c]= new MSButton (r, c);
     }
   }
-
   for (int i= 0; i<10; i++) {
     setMines();
   }
