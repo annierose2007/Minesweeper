@@ -69,11 +69,11 @@ public void displayLosingMessage()
     }
   }
       
-  buttons[NUMS_ROWS/2][NUMS_COLS/2].setLabel("you lose");
+  buttons[NUMS_ROWS/2][NUMS_COLS/2].setLabel("LOSER");
 }
 public void displayWinningMessage()
 {
-  buttons[NUMS_ROWS/2][NUMS_COLS/2].setLabel("winner winner");
+  buttons[NUMS_ROWS/2][NUMS_COLS/2].setLabel("WINNER!!!");
 }
 public boolean isValid(int r, int c)
 {
