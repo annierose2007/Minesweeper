@@ -161,9 +161,9 @@ public class MSButton
     else if ( clicked && mines.contains(this) )
       fill(255, 0, 0);
     else if (clicked)
-      fill( 200 );
+      fill(200,200,200);
     else
-      fill( 100 );
+      fill(100);
 
     rect(x, y, width, height);
     fill(0);
