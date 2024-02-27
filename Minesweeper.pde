@@ -2,12 +2,15 @@ import de.bezier.guido.*;
 public final static int NUMS_ROWS = 10;
 public final static int NUMS_COLS = 10;
 private MSButton[][] buttons; //2d array of minesweeper buttons
-private ArrayList <MSButton> mines = new ArrayList<MSButton>() ;
+private ArrayList <MSButton> mines = new ArrayList<MSButton>() ; //ArrayList of just the minesweeper buttons that are mined
+//private int countFlagged = 0;
 
 void setup ()
 {
   size(400, 400);
   textAlign(CENTER, CENTER);
+
+  // make the manager
   Interactive.make( this );
 
   buttons = new MSButton[NUMS_ROWS][NUMS_COLS];
@@ -16,6 +19,7 @@ void setup ()
       buttons[r][c]= new MSButton (r, c);
     }
   }
+
   for (int i= 0; i<10; i++) {
     setMines();
   }
@@ -65,18 +69,22 @@ public void displayLosingMessage()
     }
   }
       
-  buttons[NUMS_ROWS/2][NUMS_COLS/2].setLabel("LOSER");
+  buttons[NUMS_ROWS/2][NUMS_COLS/2].setLabel("you lose");
 }
 public void displayWinningMessage()
 {
-  buttons[NUMS_ROWS/2][NUMS_COLS/2].setLabel("WINNER!!!");
+  buttons[NUMS_ROWS/2][NUMS_COLS/2].setLabel("winner winner");
 }
 public boolean isValid(int r, int c)
 {
   if (r>=0&&r<NUMS_ROWS&&c>=0&&c<NUMS_COLS)
   {
+
+
     return true;
   }
+
+
   return false;
 }
 public int countMines(int row, int col)
@@ -100,7 +108,9 @@ public class MSButton
   private float x, y, width, height;
   private boolean clicked, flagged;
   private String myLabel;
-  public MSButton (int row, int col ){
+
+  public MSButton ( int row, int col )
+  {
     width = 400/NUMS_COLS;
     height = 400/NUMS_ROWS;
     myRow = row;
@@ -111,9 +121,16 @@ public class MSButton
     flagged = clicked = false;
     Interactive.add( this ); // register it with the manager
   }
+
+  // called by manager
   public void mousePressed ()
   {
+    //if (clicked==true) {
+    //  return;
+    //}
     clicked = true;
+
+
     if (mouseButton==RIGHT) {
       if (flagged==true) {
         flagged = false;
@@ -147,6 +164,7 @@ public class MSButton
       fill( 200 );
     else
       fill( 100 );
+
     rect(x, y, width, height);
     fill(0);
     text(myLabel, x+width/2, y+height/2);
